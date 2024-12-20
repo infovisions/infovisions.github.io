@@ -1,10 +1,10 @@
 ---
 ---
 
-# Lab Website Template
+{% capture content %}**Warning** This website is under the very first steps of **heavy** construction. Until it is closer to completion, please visit [PI Evan Peck's website](https://evanpeck.github.io/) for up-to-date information {% endcapture %}
+{% include alert.html type="warning" content=content %}
 
-[Lab Website Template](https://github.com/greenelab/lab-website-template) is an easy-to-use, flexible website template for [labs](https://www.greenelab.com/).
-Spend less time worrying about managing a website and citations, and more time running your lab.
+The **Information Visions Lab** imagines a future of data communication that prioritizes equity and access. Our research draws on information visualization tools and techniques to empower the ways in which diverse communities can trust, create, and engage with data.
 
 {%
   include button.html
