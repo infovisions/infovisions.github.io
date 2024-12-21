@@ -1,7 +1,7 @@
 ---
 ---
 
-{% capture content %}**Warning** This website is undergoing the very first steps of **heavy** construction. Until the website is closer to completion, please visit [PI Evan Peck's website](https://evanpeck.github.io/) for up-to-date information {% endcapture %}. 
+{% capture content %}**Warning** This website is undergoing the very first steps of **heavy** construction. Until the website is closer to completion, please visit [PI Evan Peck's website](https://evanpeck.github.io/) for up-to-date information. Until then, ignore! {% endcapture %}. 
 {% include alert.html type="warning" content=content %}
 
 The **Information Visions Lab** imagines a future of data communication that prioritizes equity and access. Our research draws on information visualization tools and techniques to empower the ways in which diverse communities can trust, create, and engage with data.
