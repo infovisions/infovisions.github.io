@@ -1,3 +1,5 @@
+Visit **[infovisions.github.io](https://infovisions.github.io)** 🚀
+
 # Information Visions Lab Website
 
 This is the resarch website for the Information Visions Lab at CU Boulder.
