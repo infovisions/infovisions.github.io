@@ -1,0 +1,35 @@
+name: Build and Deploy Jekyll
+
+on:
+  push:
+    branches: [ main ]    # or [ master ], depending on your default branch
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1  # Or your preferred Ruby version
+
+      - name: Install Bundler and dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build the site
+        run: |
+          bundle exec jekyll build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          # If you want a custom target branch, you can specify:
+          # publish_branch: gh-pages
