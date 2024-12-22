@@ -15,11 +15,11 @@ phd:
   description: PhD Student
 
 masters: 
-  icon: fa-solid fa-user-graduation-cap
+  icon: fa-solid fa-graduation-cap
   description: Master's Student
 
 bam:
-  icon: fa-solid fa-user-graduate
+  icon: fa-solid fa-graduation-cap
   description: Bachelor's & Master's Student
 
 undergrad:
