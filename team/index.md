@@ -7,22 +7,22 @@ nav:
 
 # {% include icon.html icon="fa-solid fa-users" %}Team
 
-We are a new group of faculty, graduate students, and undergraduates. 
+In the Information Visions Lab was founded in fall 2024. We are a new, but growing group of students and faculty with multidisciplinary backgrounds.  
 
 {% include section.html %}
 
 {% include list.html data="members" component="portrait" filter="role == 'pi'" %}
-{% include list.html data="members" component="portrait" filter="role != 'pi'" %}
+{% include list.html data="members" component="portrait" filter="role == 'phd'" %}
+{% include list.html data="members" component="portrait" filter="role == 'masters'" %}
+{% include list.html data="members" component="portrait" filter="role == 'bam'" %}
 
 {% include section.html background="images/background.jpg" dark=true %}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+While the deadline for PhD applications for Fall 2025 has passed, you can see our old, [archived call here](https://evanpeck.github.io/group/new-phd). 
 
 {% include section.html %}
 
-{% capture content %}
+<!-- {% capture content %}
 
 {% include figure.html image="images/photo.jpg" %}
 {% include figure.html image="images/photo.jpg" %}
@@ -30,4 +30,4 @@ nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 {% endcapture %}
 
-{% include grid.html style="square" content=content %}
+{% include grid.html style="square" content=content %} -->

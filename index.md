@@ -1,7 +1,9 @@
 ---
 ---
 
-The **Information Visions Lab** imagines a future of data communication that prioritizes equity and access. Our research draws on information visualization tools and techniques to empower the ways in which diverse communities can trust, create, and engage with data.
+📊❤️ The **Information Visions Lab** is a research group led by [Evan Peck](https://evanpeck.github.io/) in the [Information Science Department](https://www.colorado.edu/cmci/infoscience) at the [University of Colorado Boulder](https://www.colorado.edu/). 
+
+Collectively, we imagine a future of data communication that prioritizes equity and access. Our research draws on information visualization tools and techniques to empower the ways in which diverse communities can trust, create, and engage with data.
 
 {% capture content %}**Warning** This website is undergoing the very first steps of **heavy** construction. Until the website is closer to completion, please visit [PI Evan Peck's website](https://evanpeck.github.io/) for up-to-date information. Until then, ignore! {% endcapture %}. 
 {% include alert.html type="warning" content=content %}

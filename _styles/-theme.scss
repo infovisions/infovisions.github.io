@@ -5,7 +5,7 @@
 [data-dark="false"] {
   --primary: #0795d9;
   --secondary: #7dd3fc;
-  --text: #000000;
+  --text: #545454;
   --background: #ffffff;
   --background-alt: #fafafa;
   --light-gray: #e0e0e0;
@@ -27,9 +27,12 @@
 
 :root {
   // font families
-  --title: "Barlow", sans-serif;
-  --heading: "Barlow", sans-serif;
-  --body: "Barlow", sans-serif;
+  // --title: "Barlow", sans-serif;
+  // --heading: "Barlow", sans-serif;
+  // --body: "Barlow", sans-serif;
+  --title: "Inter", sans-serif;
+  --heading: "Inter", sans-serif;
+  --body: "Inter", sans-serif;
   --code: "Roboto Mono", monospace;
 
   // font sizes
@@ -39,13 +42,13 @@
 
   // font weights
   --thin: 200;
-  --regular: 400;
-  --semi-bold: 500;
-  --bold: 600;
+  --regular: 300; // 400 - original
+  --semi-bold: 400; // 500 - original
+  --bold: 700; // 600 - original
 
   // text line spacing
-  --spacing: 1.5;
-  --compact: 1.5;
+  --spacing: 1.25; 
+  --compact: 1.0; // was 1.5
 
   // effects
   --rounded: 3px;
