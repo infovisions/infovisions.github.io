@@ -8,4 +8,4 @@ affiliation: University of Colorado
 #  github: Matthew-Abatangle
 ---
 
-_TODO_ 2nd year Undergraduate Student
+Matthew is a 2nd year Undergraduate Student
