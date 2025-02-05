@@ -9,4 +9,4 @@ affiliation: University of Colorado
 #   github: john-doe
 ---
 
-_TODO_
+_TODO_ 1st year BAM Student

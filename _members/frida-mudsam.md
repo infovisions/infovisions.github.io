@@ -8,4 +8,4 @@ affiliation: University of Colorado
 #   github: john-doe
 ---
 
-_TODO_
+Frida is first year PhD student in the information visions lab advised by Evan Peck.
