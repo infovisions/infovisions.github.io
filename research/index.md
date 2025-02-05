@@ -1,14 +1,13 @@
 ---
 title: Research
-# nav:
-#   order: 1
-#   tooltip: Published works
+nav:
+  order: 1
+  tooltip: Published works
 ---
 
 # {% include icon.html icon="fa-solid fa-microscope" %}Research
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The following section includes only work published beginning in Fall 2024. For a more exhaustive list of publications that led to the creation of the Information Visions Lab, see [Evan Peck's publication list](https://evanpeck.github.io/publications/). 
 
 {% include section.html %}
 
