@@ -3,14 +3,18 @@
 
 a {
   color: var(--primary);
+  text-decoration: none;
   transition: color var(--transition);
   overflow-wrap: break-word;
 }
 
 a:hover {
   color: var(--text);
+  text-decoration: underline;
 }
 
+/* For non-clickable "a" elements without href */
 a:not([href]) {
   color: var(--text);
+  text-decoration: none;
 }
