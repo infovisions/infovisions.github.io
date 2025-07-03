@@ -5,31 +5,71 @@ title: 1-Hour Color Activity
 #   tooltip: Public Resources for Our Work
 ---
 
-# 🟢🔵🔴 Speed-Limit Colors: 1-Hour Activity on Data + Color
+# 🚦 Seeing Speed: A Classroom Challenge in Color Mapping and Meaning
+**Author:** [Evan Peck](https://evanpeck.github.io/), CU Boulder Information Science
 
-Have you ever had people who think they have a strong intuition about color design, but wildly underestimate the challenging practice of mapping data to color? After years of teaching design and visualization, I’ve found that hindsight bias often nudges students to assume that color decisions don’t need formal instruction, but could easily be guided by common-sense. To counteract these counterproductive feelings, I designed a hands-on activity to motivate the necessity of theory and knowledge in color design. In one hour, students gain first-hand experience in some of the challenges of color design, including…
-- Mathematical distances in some color spaces are not the same as perceptual distances
-- Individual differences may disrupt the meanings we associate with colors
-- Relying on intuition is likely to create inaccessible designs
-- User testing is highly effective at providing quick, cheap tests against our own intuition
+{% capture content %}
+**Goal:** In a 1-hour hands-on activity, students gain experience encountering important topics in color design, including…
+- **Color spaces:** Linear interpolations in some non-uniformly perceptual color spaces (e.g RGB) are not interpreted as linear by people. 
+- **Semantics:** Individual differences may disrupt the meanings we associate with colors
+- **Accessibility:** Relying on intuition is likely to create inaccessible designs
+- **Human-Centered Design Process:** User testing is highly effective at providing quick, cheap tests against our own intuition
+{% endcapture %}
+{% include alert.html type="note" content=content %}
+
+---
+
+## 🚦 Design Challenge and Activity Structure
+
+<div style="text-align: center;">
+  <img src="./images/speed-instructions.png" alt="Description" width="500">
+</div>
+
+**Scenario:**  
+> The state of Colorado has proposed using variable speed limits to reduce highway traffic congestion. But there’s a catch: they don’t have the budget for numeric speed signs. Instead, they’re testing single-color LED signs to communicate speed, and you’ve been hired to design the mapping. Your job is to translate any speed-limit from 0 to 100 to a unique color that is immediately understandable by drivers.
+
+**Structure:** This activity is run early in a course, before any lectures on color. It’s a chance for groups of students to test their assumptions through design, prototyping, and peer feedback.
+
+1. _Design (~15 min):_ Determine how to map speed values to colors  
+2. _Prototype (~10 min):_ Create 7 speed limit signs for random speeds between 0 and 100  
+3. _Evaluation (~10 min):_ User test with 3 students, guessing speed limits based on signs  
+4. _Share and Discuss (~15 min):_ Share results, compare designs, and discuss tradeoffs  
+
+---
+
+## 🧠 What Students Learn (and Often Misjudge)
+
+![Student work examples](./images/student-examples.png)
 
 
-### Prompt
-The state of Colorado has decided that the only way to alleviate traffic on busy interstates is to introduce variable speed limits that they can dynamically change depending on traffic conditions. The state does not have enough funding for numeric, digital speed limit signs. As a result, they are replacing speed limit signs with single LED lights. Your job is to translate any potential speed-limit from 0 to 100 to a unique color that is immediately understandable by drivers. 
+#### Accessibility is easy to overlook
 
-### Context
+Red and green are common choices for traffic lights and visualizations, so students often default to a red-to-green color map. But this creates issues for users with red-green color blindness.
 
-{% include section.html %}
+💡 **Learning opportunity:** Students see how easy it is to exclude users without realizing it.  
+This sets up a rich discussion on accessible design — and why traffic lights avoid this problem (redundant encoding via position *and* color!).
 
-### Resources
+#### Perceptual uniformity matters more than it seems
+
+Students familiar with RGB often assume that linear interpolation across RGB space produces intuitive gradients. It doesn’t, and we can observe the fault lines together in their short user evaluation.
+
+💡 **Learning opportunity:** This provides an opportunity to talk about the advantages and disadvantages of different color spaces (HSL, RGB, CIELab), and why perceptual uniformity is important for effective encoding.
+
+#### Color semantics vary — sometimes dramatically
+
+Each semester, some student groups choose red to represent an upper-limit (100 mph) and green (or blue) to represent a safer, lower-limit (0 mph). Other groups make the opposite association — red for “stop” (0 mph) and green (or blue) for “go” (100 mph).
+
+💡 **Learning opportunity:** Students come to appreciate the ambiguity and subjectivity of color semantics, and how cultural or contextual meanings can conflict with even a perceptually-uniform color mapping.
+
+#### Students learn the value of quick user testing
+
+Student groups are often shocked to find that their intuitions (especially in color associations!) aren’t shared by other student groups. This mirrors a common misconception in design, where creators falsely extrapolate their own experiences to large groups of people.
+
+💡 **Learning opportunity:**  Even for something as simple as designing a single light, students discover that just 10-minutes of feedback from classmates can have a dramatic, positive impact on the effectiveness of their design.
+
+
+## 📁 Resources
 - [Student Speed Limit Template (PPT)](files/color-speed-template.pptx)
 
 {% include section.html %}
 
-<!-- ## Guides and  -->
-
-<!-- {% include search-box.html %}
-
-{% include search-info.html %}
-
-{% include list.html data="citations" component="citation" style="rich" %} -->

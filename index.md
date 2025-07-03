@@ -7,7 +7,7 @@
 
 Collectively, we envision a future of data communication that is accessible and equitable to all—regardless of culture, educational background, or ability to afford technology. Our research draws on information visualization tools and techniques to help diverse communities trust, create, and engage with data in meaningful ways.
 
-{% capture content %}**Warning** This website is undergoing the very first steps of **heavy** construction. Until the website is closer to completion, please visit [PI Evan Peck's website](https://evanpeck.github.io/) for up-to-date information. Until then, ignore! {% endcapture %}. 
+{% capture content %}**Warning** This website is undergoing the very first steps of **heavy** construction. Until the website is closer to completion, please visit [PI Evan Peck's website](https://evanpeck.github.io/) for up-to-date information. Until then, ignore! {% endcapture %}
 {% include alert.html type="warning" content=content %}
 
 <!-- {%
