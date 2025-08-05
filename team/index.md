@@ -11,11 +11,18 @@ In the Information Visions Lab was founded in fall 2024. We are a new, but growi
 
 {% include section.html %}
 
+### Group
 {% include list.html data="members" component="portrait" filter="role == 'pi'" %}
 {% include list.html data="members" component="portrait" filter="role == 'phd'" %}
 {% include list.html data="members" component="portrait" filter="role == 'masters'" %}
 {% include list.html data="members" component="portrait" filter="role == 'bam'" %}
 {% include list.html data="members" component="portrait" filter="role == 'undergrad'" %}
+
+### Affiliates
+{% include list.html data="members" component="portrait" filter="role == 'affiliate'" %}
+
+<!-- ### Alumni
+{% include list.html data="members" component="portrait" filter="role == 'alumni'" style="tiny"%} -->
 
 {% include section.html background="images/background.jpg" dark=true %}
 

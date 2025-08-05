@@ -1,8 +1,8 @@
 ---
 title: Resources
-# nav:
-#   order: 1
-#   tooltip: Public Resources for Our Work
+nav:
+  order: 1
+  tooltip: Public Resources for Our Work
 ---
 
 # {% include icon.html icon="fa-solid fa-toolbox" %}Resources
@@ -14,7 +14,7 @@ While our group publishes academic papers, we also believe in the public mission
 ## Educational Activities
 Learn, adopt, or remix instructional material that our group uses to help people build intuition about the processes or challenges of data visualization
 
-- [🟢🔵🔴 Speed-Limit Colors: 1-Hour Activity on Data + Color](./ed/color-speed)
+- [🚦 Speed-Limit Colors: 1-Hour Classroom Activity on Data + Color](./ed/color-speed)
 
 <!-- {% include citation.html lookup="Open collaborative writing with Manubot" style="rich" %} -->
 
