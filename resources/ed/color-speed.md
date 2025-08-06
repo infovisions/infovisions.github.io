@@ -32,11 +32,6 @@ title: 1-Hour Color Activity
 3. _Evaluation (~10 min):_ User test with 3 students, guessing speed limits based on signs  
 4. _Share and Discuss (~15 min):_ Share results, compare designs, and discuss tradeoffs  
 
-## 📁 Resources
-- Instructional Slides \| [Google Slides](https://docs.google.com/presentation/d/19QA-7atf0yC54HC53tNWhTGCgMjhzG0SVibu872JnhE/edit?usp=sharing)
-- Student Speed Limit Template \| [Google Slides](https://docs.google.com/presentation/d/1x7zeDq1cxHyKbqjtBV8I0gXu55fWQJgNwlzK7iVIntY/edit?usp=drive_link)
-- Rapid User Testing Template [Google Sheets](https://docs.google.com/spreadsheets/d/1FicHNwU0godttYsi1z2xcAv_W5IB20_PtrBwHaSUc_U/edit?usp=sharing)
-
 ---
 
 ## 🧠 What Students Learn (and Often Misjudge)
@@ -68,6 +63,12 @@ Each semester, some student groups choose red to represent an upper-limit (100 m
 Student groups are often shocked to find that their intuitions (especially in color associations!) aren’t shared by other student groups. This mirrors a common misconception in design, where creators falsely extrapolate their own experiences to large groups of people.
 
 💡 **Learning opportunity:**  Even for something as simple as designing a single light, students discover that just 10-minutes of feedback from classmates can have a dramatic, positive impact on the effectiveness of their design.
+
+## 📁 Resources
+- Instructional Slides \| [Google Slides](https://docs.google.com/presentation/d/19QA-7atf0yC54HC53tNWhTGCgMjhzG0SVibu872JnhE/edit?usp=sharing)
+- Student Speed Limit Template \| [Google Slides](https://docs.google.com/presentation/d/1x7zeDq1cxHyKbqjtBV8I0gXu55fWQJgNwlzK7iVIntY/edit?usp=drive_link)
+- Rapid User Testing Template \| [Google Sheets](https://docs.google.com/spreadsheets/d/1FicHNwU0godttYsi1z2xcAv_W5IB20_PtrBwHaSUc_U/edit?usp=sharing)
+
 
 
 {% include section.html %}
