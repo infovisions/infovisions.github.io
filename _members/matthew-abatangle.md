@@ -9,4 +9,4 @@ links:
   github: Matthew-Abatangle
 ---
 
-Matthew is a 2nd year Undergraduate Student
+Matthew is a 3rd year Undergraduate Student
