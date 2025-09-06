@@ -4,8 +4,8 @@ image: images/members/aliceg-photo.png
 role: phd
 affiliation: University of Colorado
 aliases:
-	- Alice Fairbank Goldfarb
-	- A. F. Goldfarb
+  - Alice Fairbank Goldfarb
+  - A. F. Goldfarb
 links:
 	home-page: https://alicegoldfarb.com
 	email: alice.goldfarb@colorado.edu
