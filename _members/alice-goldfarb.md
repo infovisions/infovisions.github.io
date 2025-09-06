@@ -7,11 +7,11 @@ aliases:
   - Alice Fairbank Goldfarb
   - A. F. Goldfarb
 links:
-	home-page: https://alicegoldfarb.com
-	email: alice.goldfarb@colorado.edu
-	github: goldfarb
-	bluesky: alicegoldfarb.com
-	# orcid: 0000-0003-3608-3891
+  home-page: https://alicegoldfarb.com
+  email: alice.goldfarb@colorado.edu
+  github: goldfarb
+  bluesky: alicegoldfarb.com
+  # orcid: 0000-0003-3608-3891
 ---
 
 Alice Goldfarb is a PhD student in Information Science, and a member of the [Information Visions Lab](https://infovisions.github.io/). Advised by [Evan Peck](https://infovisions.github.io/members/evan-peck.html), Alice is researching ways to show uncertainty and missingness in data visualizations.
