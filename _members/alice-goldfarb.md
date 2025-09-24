@@ -18,4 +18,4 @@ Alice Goldfarb is a PhD student in Information Science, and a member of the [Inf
 
 Before joining the University of Colorado Boulder, Alice taught high school, flight instructed, and was part of the Labs at both NPR and Library of Congress. Alice led the COVID Racial Data Tracker for The COVID Tracking Project and was a Nieman Visiting Fellow to continue thinking about the public health information ecosystem.
 
-Alice studied mathematics and physics at Brown University, and Media Studies at The New School, researching the postal service.
+Alice studied mathematics and physics at Brown University, and media studies at The New School, researching the postal service.
