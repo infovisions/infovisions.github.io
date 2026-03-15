@@ -1,47 +1,48 @@
-- title: Cool Dataset
-  subtitle: a subtitle
-  group: featured
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - resource
+# Projects for the /projects page.
+# Fields: title, subtitle (optional), description, status (active/completed),
+#         image, link (optional — omit if no page exists yet)
+# Replace [PLACEHOLDER] content and swap images when you have real assets.
 
-- title: Cool Package
-  subtitle: a subtitle
-  group: featured
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - resource
+- title: "From Charts to Context: An Ecological View of Visualization Literacy"
+  subtitle: "CHI 2026 · Workshop on Data Literacy"
+  status: active
+  image: images/projects/eco-vis-literacy.png
+  description: >
+    Visualization literacy is traditionally defined as an individual's ability to decode
+    charts—but interpretation is shaped by far more than cognition alone. This project
+    applies Bronfenbrenner's Ecological Systems Theory to propose a layered framework
+    spanning personal experience, institutional framing, cultural norms, and temporal
+    context. The goal is a shared scaffold that lets visualization educators coordinate
+    with adjacent disciplines like media and information literacy rather than reinvent them.
 
-- title: Cool Tutorial
-  subtitle: a subtitle
+- title: "[PLACEHOLDER] Project Title Two"
+  subtitle: "A short tagline for this project"
+  status: active
   image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - resource
-    - publication
+  description: >
+    [PLACEHOLDER] 2–3 sentences describing this project: what problem it addresses,
+    the approach taken, and why it matters.
 
-- title: Cool Web App
-  subtitle: a subtitle
+- title: "[PLACEHOLDER] Project Title Three"
+  subtitle: "A short tagline for this project"
+  status: active
   image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - software
+  description: >
+    [PLACEHOLDER] 2–3 sentences describing this project: what problem it addresses,
+    the approach taken, and why it matters.
 
-- title: Cool Web Server
-  subtitle: a subtitle
+- title: "[PLACEHOLDER] Project Title Four"
+  subtitle: "A short tagline for this project"
+  status: completed
   image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - software
+  description: >
+    [PLACEHOLDER] 2–3 sentences describing this project: what problem it addresses,
+    the approach taken, and why it matters.
+
+- title: "[PLACEHOLDER] Project Title Five"
+  subtitle: "A short tagline for this project"
+  status: completed
+  image: images/photo.jpg
+  description: >
+    [PLACEHOLDER] 2–3 sentences describing this project: what problem it addresses,
+    the approach taken, and why it matters.

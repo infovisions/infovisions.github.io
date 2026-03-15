@@ -24,6 +24,26 @@ Collectively, we envision a future of data communication that is accessible and 
 
 {% include section.html %}
 
+## Recent News
+
+{% assign sorted_news = site.data.news | sort: "date" | reverse %}
+<div class="news-list">
+  {% for item in sorted_news limit:6 %}
+  <div class="news-item">
+    <div class="news-date">{{ item.date | date: "%b %Y" }}</div>
+    <div class="news-text">
+      {% if item.link and item.link != "#" %}
+        <a href="{{ item.link }}">{{ item.text | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+      {% else %}
+        {{ item.text | markdownify | remove: "<p>" | remove: "</p>" }}
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% include section.html %}
+
 <!-- ## Highlights
 
 {% capture text %}

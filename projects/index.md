@@ -1,27 +1,27 @@
-<!-- ---
+---
 title: Projects
-nav:
-  order: 2
-  tooltip: Software, datasets, and more
---- -->
+# To add to site nav, uncomment and adjust the block below:
+# nav:
+#   order: 2
+#   tooltip: Research projects
+---
 
-# {% include icon.html icon="fa-solid fa-wrench" %}Projects
+# {% include icon.html icon="fa-solid fa-flask" %}Projects
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-{% include tags.html tags="publication, resource, website" %}
-
-{% include search-info.html %}
+We design tools, systems, and studies to make data more accessible and meaningful across diverse communities.
 
 {% include section.html %}
 
-## Featured
+## Active Projects
 
-{% include list.html component="card" data="projects" filter="group == 'featured'" %}
+<div class="project-grid">
+{% include list.html component="project-card" data="projects" filter="status == 'active'" %}
+</div>
 
 {% include section.html %}
 
-## More
+## Completed Projects
 
-{% include list.html component="card" data="projects" filter="!group" style="small" %}
+<div class="project-grid" data-size="small">
+{% include list.html component="project-card" data="projects" filter="status == 'completed'" %}
+</div>
