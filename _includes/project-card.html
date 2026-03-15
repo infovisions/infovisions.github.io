@@ -1,0 +1,41 @@
+{% assign has_link = false %}
+{% if include.link and include.link != "" and include.link != "#" %}
+  {% assign has_link = true %}
+{% endif %}
+
+<div class="project-card">
+  <div class="project-card-image">
+    {% if has_link %}
+      <a href="{{ include.link }}" aria-label="{{ include.title | default: "project" | regex_strip }}">
+    {% endif %}
+    <img
+      src="{{ include.image | relative_url }}"
+      alt="{{ include.title | default: "project image" | regex_strip }}"
+      loading="lazy"
+      {% include fallback.html %}
+    >
+    {% if has_link %}
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="project-card-body">
+    {% if include.title %}
+      {% if has_link %}
+        <a href="{{ include.link }}" class="project-card-title">{{ include.title }}</a>
+      {% else %}
+        <span class="project-card-title">{{ include.title }}</span>
+      {% endif %}
+    {% endif %}
+
+    {% if include.subtitle %}
+      <div class="project-card-subtitle">{{ include.subtitle }}</div>
+    {% endif %}
+
+    {% if include.description %}
+      <p class="project-card-description">
+        {{ include.description | markdownify | remove: "<p>" | remove: "</p>" }}
+      </p>
+    {% endif %}
+  </div>
+</div>

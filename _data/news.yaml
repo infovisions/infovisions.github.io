@@ -1,0 +1,20 @@
+# News items for the homepage snippet section.
+# Each item: date (YYYY-MM-DD), text, and an optional link.
+# Items are shown most-recent-first. Add new items at the top.
+
+- date: 2026-03-01
+  text: "Lab website launches! We'll be adding more content over the coming weeks."
+
+- date: 2026-01-15
+  text: "[PLACEHOLDER] Paper accepted at [CONFERENCE YEAR]. More details soon."
+  link: "#"
+
+- date: 2025-12-01
+  text: "[PLACEHOLDER] Welcome [STUDENT NAME] to the lab as a new PhD student!"
+
+- date: 2025-11-01
+  text: "[PLACEHOLDER] Presenting work at [EVENT/CONFERENCE NAME]."
+  link: "#"
+
+- date: 2025-09-01
+  text: "[PLACEHOLDER] The Information Visions Lab officially launches at CU Boulder."

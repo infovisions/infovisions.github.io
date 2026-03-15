@@ -1,0 +1,112 @@
+---
+---
+
+// ── Project grid ────────────────────────────────────────────────────────────
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+}
+
+.project-grid[data-size="small"] {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-grid[data-size="small"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .project-grid,
+  .project-grid[data-size="small"] {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Project card ─────────────────────────────────────────────────────────────
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.project-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+// Image area
+.project-card-image {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--background-alt);
+}
+
+.project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.project-card-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.project-card:hover .project-card-image img {
+  transform: scale(1.04);
+}
+
+// Text body
+.project-card-body {
+  padding: 16px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.project-card-title {
+  font-size: 1rem;
+  font-weight: var(--semi-bold);
+  color: var(--dark-gray);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+a.project-card-title:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.project-card-subtitle {
+  font-size: 0.75rem;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.project-card-description {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 6px 0 0;
+}
