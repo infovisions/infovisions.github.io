@@ -11,10 +11,12 @@ While our group publishes academic papers, we also believe in the public mission
 
 {% include section.html %}
 
-## Educational Activities
+## Educational Activities + Tools
 Learn, adopt, or remix instructional material that our group uses to help people build intuition about the processes or challenges of data visualization
 
-- [🚦 Speed-Limit Colors: 1-Hour Classroom Activity on Data + Color](./ed/color-speed)
+- [🚦 Speed-Limit Colors](./ed/color-speed): Material + instructions for a 1-Hour Classroom Activity on Data + Color
+- [📊 Bar Graphs vs Pie Charts 🥧:](https://barvpie.netlify.app/) A tiny tool to demonstrate quick, direct comparisons between bar graphs and pie charts
+- [😀 Emojicon Creator 🔢:](https://emojicon-creator.netlify.app/) A tiny tool to create icon arrays with emojis
 
 <!-- {% include citation.html lookup="Open collaborative writing with Manubot" style="rich" %} -->
 
