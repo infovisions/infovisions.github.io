@@ -20,6 +20,30 @@ layout: default
 
 {{ content }}
 
+{% assign member_slug = page.slug %}
+{% assign member_projects = site.projects
+  | where_exp: "p", "p.lead contains member_slug or p.pi contains member_slug"
+%}
+
+{% if member_projects.size > 0 %}
+  {% include section.html size="wide" %}
+  <h2>Projects</h2>
+  <div class="project-grid">
+    {% for project in member_projects %}
+      {% assign card_desc = project.short_description | default: project.excerpt %}
+      {% include project-card.html
+        title=project.title
+        subtitle=project.subtitle
+        description=card_desc
+        image=project.image
+        link=project.url
+        lead=project.lead
+        pi=project.pi
+      %}
+    {% endfor %}
+  </div>
+{% endif %}
+
 {% assign aliases = page.aliases
   | default: page.name
   | default: page.title

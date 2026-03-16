@@ -1,0 +1,22 @@
+# Lab publications. Maintained manually.
+# Fields: id, title, authors, venue, year, type, projects, pdf, doi, code, award, thumb
+#
+# type:     paper | workshop | poster | thesis | preprint
+# projects: list of _projects/ slugs this publication belongs to (supports multiple)
+# award:    e.g. "Best Paper Award" or "Honorable Mention" — leave blank if none
+
+- id: eco-vis-literacy-2026
+  title: "From Charts to Context: An Ecological View of Visualization Literacy"
+  authors:
+    - Frida Mudsam
+    - Evan M. Peck
+  venue: "CHI 2026 Workshop on Data Literacy"
+  year: 2026
+  type: workshop
+  projects:
+    - eco-vis
+  pdf:
+  doi:
+  code:
+  award:
+  thumb: images/projects/eco-vis/eco-vis-literacy.png

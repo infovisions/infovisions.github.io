@@ -1,7 +1,8 @@
 ---
 title: Resources
 nav:
-  order: 1
+  order: 4
+  icon: fa-solid fa-toolbox
   tooltip: Public Resources for Our Work
 ---
 

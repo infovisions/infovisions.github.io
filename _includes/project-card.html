@@ -3,13 +3,20 @@
   {% assign has_link = true %}
 {% endif %}
 
+{% assign card_image = include.image %}
+{% assign image_is_default = false %}
+{% if card_image == nil or card_image == "" %}
+  {% assign card_image = "images/background.jpg" %}
+  {% assign image_is_default = true %}
+{% endif %}
+
 <div class="project-card">
-  <div class="project-card-image">
+  <div class="project-card-image{% if image_is_default %} is-default{% endif %}">
     {% if has_link %}
       <a href="{{ include.link }}" aria-label="{{ include.title | default: "project" | regex_strip }}">
     {% endif %}
     <img
-      src="{{ include.image | relative_url }}"
+      src="{{ card_image | relative_url }}"
       alt="{{ include.title | default: "project image" | regex_strip }}"
       loading="lazy"
       {% include fallback.html %}
@@ -38,4 +45,38 @@
       </p>
     {% endif %}
   </div>
+
+  {% assign card_people = "" | split: "," %}
+  {% if include.lead %}{% assign card_people = card_people | concat: include.lead %}{% endif %}
+  {% if include.pi %}{% assign card_people = card_people | concat: include.pi %}{% endif %}
+  {% assign card_people = card_people | uniq %}
+
+  {% if card_people.size > 0 %}
+    <div class="project-card-people">
+      {% for slug in card_people %}
+        {% assign person = site.members | where_exp: "m", "m.slug == slug" | first %}
+        {% if person == nil %}
+          {% assign person = site.collaborators | where_exp: "c", "c.slug == slug" | first %}
+        {% endif %}
+        {% if person %}
+          {% assign person_link = nil %}
+          {% if person.group == "collaborator" %}
+            {% assign person_link = person.website %}
+          {% elsif page.slug != person.slug %}
+            {% assign person_link = person.url | relative_url %}
+          {% endif %}
+          {% if person_link and person_link != "" %}
+            <a href="{{ person_link }}" class="project-card-person" title="{{ person.name }}">
+              <img src="{{ person.image | relative_url }}" alt="{{ person.name }}" loading="lazy">
+            </a>
+          {% else %}
+            <span class="project-card-person">
+              <img src="{{ person.image | relative_url }}" alt="{{ person.name }}" loading="lazy">
+            </span>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
 </div>

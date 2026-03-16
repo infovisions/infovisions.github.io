@@ -34,6 +34,10 @@ affiliate:
   icon: fa-solid fa-user-tie
   description: Affiliate
 
+collaborator:
+  icon: fa-solid fa-user
+  description: Collaborator
+
 programmer:
   icon: fa-solid fa-code
   description: Programmer

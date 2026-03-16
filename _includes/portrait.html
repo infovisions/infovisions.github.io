@@ -1,23 +1,47 @@
 {% if include.lookup %}
-  {% assign member = site.members 
+  {% assign member = site.members
     | where_exp: "member", "member.slug == include.lookup"
-    | first
-  %}
+    | first %}
+  {% if member == nil %}
+    {% assign member = site.collaborators
+      | where_exp: "c", "c.slug == include.lookup"
+      | first %}
+  {% endif %}
 {% else %}
   {% assign member = include %}
 {% endif %}
 
 {% assign type = site.data.types[member.role] %}
 
+{% comment %}
+  Determine link URL:
+  - If member has an explicit `website:` field, use that (works for collaborators and members)
+  - Otherwise, if it's a lab member with a real collection page, link to it
+  - If neither applies, no link (renders as a div)
+{% endcomment %}
+{% assign portrait_link = nil %}
+{% if member.website %}
+  {% assign portrait_link = member.website %}
+{% elsif member.group != "collaborator" and page.slug != member.slug %}
+  {% assign portrait_link = member.url | relative_url | uri_escape %}
+{% endif %}
+
 <div class="portrait-wrapper">
-  <a
-    {% if page.slug != member.slug %}
-      href="{{ member.url | relative_url | uri_escape }}"
-    {% endif %}
-    class="portrait"
-    data-style="{{ include.style }}"
-    aria-label="{{ member.name | default: "member link" | regex_strip }}"
-  >
+  {% if portrait_link %}
+    <a
+      href="{{ portrait_link }}"
+      class="portrait"
+      data-style="{{ include.style }}"
+      aria-label="{{ member.name | default: "member link" | regex_strip }}"
+    >
+  {% else %}
+    <div
+      class="portrait"
+      data-style="{{ include.style }}"
+      aria-label="{{ member.name | default: "member" | regex_strip }}"
+    >
+  {% endif %}
+
     {% if type %}
       {% include icon.html icon=type.icon %}
     {% endif %}
@@ -30,22 +54,25 @@
       {% include fallback.html %}
     >
 
-    {% if member.name %}
-      <span class="portrait-name">
-        {{ member.name }}
-      </span>
-    {% endif %}
+    <span class="portrait-text">
+      {% if member.name %}
+        <span class="portrait-name">{{ member.name }}</span>
+      {% endif %}
 
-    {% if member.description or type %}
-      <span class="portrait-description">
-        {{ member.description | default: type.description }}
-      </span>
-    {% endif %}
+      {% if member.description or type %}
+        <span class="portrait-description">
+          {{ member.description | default: type.description }}
+        </span>
+      {% endif %}
 
-    {% if member.affiliation %}
-      <span class="portrait-affiliation">
-        {{ member.affiliation }}
-      </span>
-    {% endif %}
-  </a>
+      {% if member.affiliation %}
+        <span class="portrait-affiliation">{{ member.affiliation }}</span>
+      {% endif %}
+    </span>
+
+  {% if portrait_link %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
 </div>

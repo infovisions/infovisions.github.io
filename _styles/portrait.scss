@@ -71,9 +71,22 @@
   font-weight: var(--semi-bold);
 }
 
+.portrait[data-style="tiny"] .portrait-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
 .portrait[data-style="tiny"] {
-  .portrait-description,
-  .portrait-affiliation {
+  .portrait-description {
     display: none;
+  }
+
+  .portrait-affiliation {
+    font-size: 0.8rem;
+    opacity: 0.65;
+
+    &::before { content: "("; }
+    &::after  { content: ")"; }
   }
 }

@@ -2,14 +2,15 @@
 title: Team
 nav:
   order: 3
+  icon: fa-solid fa-users
   tooltip: About our team
 ---
 
 # {% include icon.html icon="fa-solid fa-users" %}Team
 
-In the Information Visions Lab was founded in fall 2024. We are a new, but growing group of students and faculty with multidisciplinary backgrounds.  
+We are a group of people from multidisciplinary backgrounds who are collectively interested in improving data communication. To build a rich community of critique and design, we meet weekly alongside Prof. Jonathan Zong's [Data & Design Group](https://data-and-design.org/). 
 
-{% include section.html %}
+{% include section.html size="wide" %}
 
 ### Group
 {% include list.html data="members" component="portrait" filter="role == 'pi'" %}

@@ -1,0 +1,175 @@
+---
+layout: default
+---
+
+{% include section.html size="wide" %}
+
+<div class="project-detail">
+
+  <div class="project-detail-main">
+
+    <h1 class="project-detail-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+      <p class="project-detail-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+
+    <div class="project-detail-body">
+      {{ content }}
+    </div>
+
+    {% assign pubs = site.data.publications | where_exp: "p", "p.projects contains page.slug" %}
+    {% if pubs.size > 0 %}
+      <section class="project-detail-section">
+        <h2 class="project-detail-section-heading">Publications</h2>
+        <div class="pub-list">
+          {% for pub in pubs %}
+            <div class="pub-card">
+              {% if pub.thumb %}
+                <div class="pub-card-thumb">
+                  <img src="{{ pub.thumb | relative_url }}" alt="{{ pub.title }}" loading="lazy">
+                </div>
+              {% endif %}
+              <div class="pub-card-body">
+                <div class="pub-card-title">
+                  {% if pub.pdf or pub.doi %}
+                    <a href="{{ pub.pdf | default: pub.doi }}">{{ pub.title }}</a>
+                  {% else %}
+                    {{ pub.title }}
+                  {% endif %}
+                  {% if pub.award %}
+                    <span class="pub-award">{{ pub.award }}</span>
+                  {% endif %}
+                </div>
+                <div class="pub-card-authors">
+                  {% assign author_count = pub.authors | size %}
+                  {% for author in pub.authors %}
+                    {{ author }}{% unless forloop.last %}, {% endunless %}
+                  {% endfor %}
+                </div>
+                <div class="pub-card-venue">{{ pub.venue }}, {{ pub.year }}</div>
+                <div class="pub-card-links">
+                  {% if pub.pdf %}
+                    <a href="{{ pub.pdf }}" class="pub-link">PDF</a>
+                  {% endif %}
+                  {% if pub.doi %}
+                    <a href="{{ pub.doi }}" class="pub-link">DOI</a>
+                  {% endif %}
+                  {% if pub.code %}
+                    <a href="{{ pub.code }}" class="pub-link">Code</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if page.news and page.news.size > 0 %}
+      <section class="project-detail-section">
+        <h2 class="project-detail-section-heading">News</h2>
+        <ul class="project-news-list">
+          {% for item in page.news %}
+            <li class="project-news-item">{{ item | markdownify }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+  </div>
+
+  <aside class="project-detail-sidebar">
+
+    {% if page.date_start %}
+      <div class="sidebar-block">
+        <div class="sidebar-label">Date</div>
+        <div class="sidebar-value">
+          {{ page.date_start }}–{% if page.date_end %}{{ page.date_end }}{% else %}Present{% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.lead and page.lead.size > 0 %}
+      <div class="sidebar-block">
+        <div class="sidebar-label">Lead</div>
+        <div class="sidebar-people">
+          {% for slug in page.lead %}
+            {% include portrait.html lookup=slug style="tiny" %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.pi and page.pi.size > 0 %}
+      <div class="sidebar-block">
+        <div class="sidebar-label">PI</div>
+        <div class="sidebar-people">
+          {% for slug in page.pi %}
+            {% include portrait.html lookup=slug style="tiny" %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.collaborators and page.collaborators.size > 0 %}
+      <div class="sidebar-block">
+        <div class="sidebar-label">Collaborators</div>
+        <div class="sidebar-people">
+          {% for slug in page.collaborators %}
+            {% include portrait.html lookup=slug style="tiny" %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.funding and page.funding.size > 0 %}
+      <div class="sidebar-block">
+        <div class="sidebar-label">Funding</div>
+        <ul class="sidebar-funding-list">
+          {% for funder in page.funding %}
+            <li class="sidebar-funding-item">
+              {% if funder.name %}
+                {% if funder.image %}
+                  {% if funder.url %}
+                    <a href="{{ funder.url }}" class="funding-logo-link">
+                      <img src="{{ funder.image | relative_url }}"
+                           alt="{{ funder.name }}"
+                           class="funding-logo">
+                    </a>
+                  {% else %}
+                    <img src="{{ funder.image | relative_url }}"
+                         alt="{{ funder.name }}"
+                         class="funding-logo">
+                  {% endif %}
+                {% else %}
+                  {% if funder.url %}
+                    <a href="{{ funder.url }}" class="funding-name">{{ funder.name }}</a>
+                  {% else %}
+                    <span class="funding-name">{{ funder.name }}</span>
+                  {% endif %}
+                {% endif %}
+              {% else %}
+                {{ funder | markdownify | remove: "<p>" | remove: "</p>" }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if page.resources and page.resources.size > 0 %}
+      <div class="sidebar-block">
+        <div class="sidebar-label">Resources</div>
+        <div class="sidebar-resources">
+          {% for resource in page.resources %}
+            {% if resource.url and resource.url != "" %}
+              <a href="{{ resource.url }}" class="sidebar-resource-link">{{ resource.label }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+  </aside>
+
+</div>
