@@ -68,9 +68,24 @@
   font-weight: var(--semi-bold);
 }
 
-.portrait[data-style=tiny] .portrait-description,
-.portrait[data-style=tiny] .portrait-affiliation {
+.portrait[data-style=tiny] .portrait-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.portrait[data-style=tiny] .portrait-description {
   display: none;
+}
+.portrait[data-style=tiny] .portrait-affiliation {
+  font-size: 0.8rem;
+  opacity: 0.65;
+}
+.portrait[data-style=tiny] .portrait-affiliation::before {
+  content: "(";
+}
+.portrait[data-style=tiny] .portrait-affiliation::after {
+  content: ")";
 }
 
 /*# sourceMappingURL=portrait.css.map */

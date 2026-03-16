@@ -2,6 +2,11 @@
   font-size: 1em;
 }
 
+h2 .icon {
+  color: var(--primary);
+  margin-right: 0.15em;
+}
+
 span.icon {
   line-height: 1;
 }
