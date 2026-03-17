@@ -16,8 +16,9 @@ A step-by-step guide for adding and editing content on the [Information Visions 
 8. [Publications](#8-publications)
 9. [News Items](#9-news-items)
 10. [External Collaborators](#10-external-collaborators)
-11. [Images](#11-images)
-12. [Quick Reference](#12-quick-reference)
+11. [Blog Posts](#11-blog-posts)
+12. [Images](#12-images)
+13. [Quick Reference](#13-quick-reference)
 
 ---
 
@@ -209,6 +210,8 @@ infovisions.github.io/
 ├── _collaborators/            ← External collaborators (not lab members)
 │   ├── darakhshan-mir.md
 │   └── ...
+├── _posts/                    ← Blog posts (date-prefixed filenames)
+│   └── 2019-01-07-example-post-1.md
 ├── _data/                     ← Structured data files
 │   ├── news.yaml              ← Homepage news items
 │   ├── publications.yaml      ← Lab publications
@@ -219,9 +222,11 @@ infovisions.github.io/
 │   ├── collaborators/         ← Collaborator photos
 │   └── funding/               ← Funder logos
 ├── about/                     ← About page
+├── blog/                      ← Blog listing page
 ├── projects/                  ← Projects listing page
-├── team/                      ← Team listing page
+├── research/                  ← Publications page (not yet in navigation)
 ├── resources/                 ← Resources page
+├── team/                      ← Team listing page
 └── index.md                   ← Homepage
 ```
 
@@ -693,7 +698,51 @@ pi:
 
 ---
 
-## 11. Images
+## 11. Blog Posts
+
+### Where to edit
+
+Blog posts live in the **`_posts/`** folder. Each post is a Markdown file with a date-prefixed filename.
+
+### Filename convention
+
+Post filenames **must** follow this format: `YYYY-MM-DD-your-post-slug.md`
+
+For example: `2026-03-15-new-lab-opening.md`
+
+The date determines the post's published date, and the slug becomes the URL. The example above would create a page at `infovisions.github.io/blog/new-lab-opening/`.
+
+### Frontmatter fields
+
+| Field | Required? | Description | Example |
+|-------|-----------|-------------|---------|
+| `title` | **Yes** | Post title | `New Lab Opening` |
+| `author` | No | Author slug (filename from `_members/` without `.md`) | `evan-peck` |
+| `tags` | No | List of topic tags | See example below |
+
+### Example
+
+See `_posts/2019-01-07-example-post-1.md` for a template you can copy. Here's the basic structure:
+
+```yaml
+---
+title: My First Blog Post
+author: evan-peck
+tags:
+  - visualization
+  - announcement
+---
+
+Write your post content here using Markdown.
+```
+
+### Blog listing page
+
+The blog listing page at `blog/index.md` is ready to use. To add it to the site navigation, uncomment the `nav:` block in its frontmatter.
+
+---
+
+## 12. Images
 
 ### Where to put images
 
@@ -729,7 +778,7 @@ image: images/members/janed-photo.jpg
 
 ---
 
-## 12. Quick Reference
+## 13. Quick Reference
 
 | I want to... | Edit this file/folder | Key fields |
 |--------------|----------------------|------------|
@@ -741,6 +790,7 @@ image: images/members/janed-photo.jpg
 | Link a publication to a project | Edit `_data/publications.yaml` | Add project slug to `projects` list |
 | Add a news item | Edit `_data/news.yaml` | `date`, `text` |
 | Add an external collaborator | Create `_collaborators/firstname-lastname.md` | `name`, `group`, `role`, `website`, `image` |
+| Write a blog post | Create `_posts/YYYY-MM-DD-slug.md` | `title`, `author`, `tags` |
 | Upload a photo | Upload to the appropriate `images/` subfolder | |
 
 ---
