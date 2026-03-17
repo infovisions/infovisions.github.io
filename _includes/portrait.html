@@ -56,13 +56,13 @@
 
     <span class="portrait-text">
       {% if member.name %}
-        <span class="portrait-name">{{ member.name }}</span>
+        <span class="portrait-name">{{ member.name }}</span><br>
       {% endif %}
 
       {% if member.description or type %}
         <span class="portrait-description">
           {{ member.description | default: type.description }}
-        </span>
+        </span><br>
       {% endif %}
 
       {% if member.affiliation %}
