@@ -4,7 +4,7 @@ The website for the [Information Visions Lab](https://infovisions.github.io/) at
 
 ## Editing the Website
 
-See **[the editing guide](https://github.com/infovisions/infovisions.github.io/blob/main/GUIDE.md)** for step-by-step instructions on adding members, projects, publications, news, and more. 
+See **[infovisions.github.io](https://infovisions.github.io)** for step-by-step instructions on adding members, projects, publications, news, and more. 
 
 ## Credits
 
