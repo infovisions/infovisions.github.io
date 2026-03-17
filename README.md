@@ -4,7 +4,7 @@ The website for the [Information Visions Lab](https://infovisions.github.io/) at
 
 ## Editing the Website
 
-See **[GUIDE.md](GUIDE.md)** for step-by-step instructions on adding members, projects, publications, news, and more. No coding experience required.
+See **[infovisions.github.io](https://infovisions.github.io)** for step-by-step instructions on adding members, projects, publications, news, and more. No coding experience required.
 
 ## Local Development
 
