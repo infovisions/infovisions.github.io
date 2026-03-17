@@ -4,16 +4,7 @@ The website for the [Information Visions Lab](https://infovisions.github.io/) at
 
 ## Editing the Website
 
-See **[infovisions.github.io](https://infovisions.github.io)** for step-by-step instructions on adding members, projects, publications, news, and more. No coding experience required.
-
-## Local Development
-
-```bash
-git clone https://github.com/infovisions/infovisions.github.io.git
-cd infovisions.github.io
-bundle install
-bundle exec jekyll serve --livereload
-```
+See **[the editing guide](https://github.com/infovisions/infovisions.github.io/blob/main/GUIDE.md)** for step-by-step instructions on adding members, projects, publications, news, and more. 
 
 ## Credits
 
