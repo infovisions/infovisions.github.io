@@ -44,6 +44,20 @@ layout: default
   </div>
 {% endif %}
 
+{% assign member_news = site.data.news | where_exp: "item", "item.members contains member_slug" | sort: "date" | reverse %}
+{% if member_news.size > 0 %}
+  {% include section.html size="wide" %}
+  <h2>News</h2>
+  <div class="news-list">
+    {% for item in member_news %}
+      <div class="news-item">
+        <div class="news-date">{{ item.date | date: "%b %Y" }}</div>
+        <div class="news-text">{{ item.text | markdownify | remove: "<p>" | remove: "</p>" }}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
 {% assign aliases = page.aliases
   | default: page.name
   | default: page.title

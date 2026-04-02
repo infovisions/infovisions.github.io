@@ -75,6 +75,7 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
+  br { display: none; }
 }
 
 .portrait[data-style="tiny"] {

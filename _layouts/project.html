@@ -65,14 +65,24 @@ layout: default
       </section>
     {% endif %}
 
-    {% if page.news and page.news.size > 0 %}
+    {% assign global_news = site.data.news | where_exp: "item", "item.projects contains page.slug" | sort: "date" | reverse %}
+    {% if global_news.size > 0 or page.news and page.news.size > 0 %}
       <section class="project-detail-section">
         <h2 class="project-detail-section-heading">News</h2>
-        <ul class="project-news-list">
-          {% for item in page.news %}
-            <li class="project-news-item">{{ item | markdownify }}</li>
+        <div class="news-list">
+          {% for item in global_news %}
+            <div class="news-item">
+              <div class="news-date">{{ item.date | date: "%b %Y" }}</div>
+              <div class="news-text">{{ item.text | markdownify | remove: "<p>" | remove: "</p>" }}</div>
+            </div>
           {% endfor %}
-        </ul>
+          {% for item in page.news %}
+            <div class="news-item">
+              <div class="news-date"></div>
+              <div class="news-text">{{ item | markdownify | remove: "<p>" | remove: "</p>" }}</div>
+            </div>
+          {% endfor %}
+        </div>
       </section>
     {% endif %}
 

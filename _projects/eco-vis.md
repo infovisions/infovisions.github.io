@@ -11,7 +11,7 @@ pi:
   - evan-peck
 resources:
 funding: []
-news: ["Frida Mudsam's workshop paper - _From Charts to Context: An Ecological View of Visualization Literacy_ - was accepted to the [ACM CHI 2026 Workshop on Data Literacy](https://data-literacy-workshop.github.io/CHI26/) in Barcelona, Spain. More details soon!"]
+news: []
 short_description: "How do context, culture, and lived experience shape the way people read charts? We apply an ecological framework to visualization literacy to move beyond individual decoding skills."
 ---
 
