@@ -73,6 +73,9 @@
   flex-direction: column;
   gap: 1px;
 }
+.portrait[data-style=tiny] .portrait-text br {
+  display: none;
+}
 
 .portrait[data-style=tiny] .portrait-description {
   display: none;
