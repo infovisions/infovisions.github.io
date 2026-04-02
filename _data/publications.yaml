@@ -10,13 +10,13 @@
   authors:
     - Frida Mudsam
     - Evan M. Peck
-  venue: "CHI 2026 Workshop on Data Literacy"
+  venue: "ACM CHI 2026 Workshop on Data Literacy"
   year: 2026
   type: workshop
   projects:
     - eco-vis
-  pdf:
-  doi:
+  pdf: https://osf.io/preprints/edarxiv/475zd_v1
+  doi: https://doi.org/10.35542/osf.io/475zd_v1
   code:
   award:
   thumb: images/projects/eco-vis/eco-vis-literacy.png
