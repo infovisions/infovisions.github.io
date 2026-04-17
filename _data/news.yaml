@@ -2,14 +2,20 @@
 # Each item: date (YYYY-MM-DD), text, and an optional link.
 # Items are shown most-recent-first. Add new items at the top.
 
+- date: 2026-04-16
+  text: "Kate Davis wins the college's William W. White Award, given to a single outstanding undergraduate in Information Science @ CU Boulder. Her work on data physicalization is [covered here by the College of Communciations, Media, Design, and Information](https://www.colorado.edu/cmdinow/2026/04/15/2-minutes-kate-davis)"
+  members: [katherine-davis]
+  projects: [ceramics]
+
+- date: 2026-04-16
+  text: "Frida Mudsam's workshop paper - [_From Charts to Context: An Ecological View of Visualization Literacy_](https://osf.io/preprints/edarxiv/475zd_v1) is presented at the [ACM CHI 2026 Workshop on Data Literacy](https://data-literacy-workshop.github.io/CHI26/) in Barcelona, Spain 🇪🇸. [See our project page](/projects/eco-vis.html)"
+  members: [frida-mudsam, evan-peck]
+  projects: [eco-vis]
+
 - date: 2026-04-01
   text: "[Ziptable is featured on FlowingData](https://flowingdata.com/2026/04/02/share-small-datasets-stored-in-a-url/). Built by [Evan Peck](./members/evan-peck/html), [Ziptable](http://ziptbl.com/) is a tiny tool for quickly sharing small datasets without uploading any data to a server. See the [announcement](https://bsky.app/profile/peck.phd/post/3mhdwbpmrhk2u)."
   members: [evan-peck]
 
-- date: 2026-03-01
-  text: "🎉 Frida Mudsam's workshop paper - [_From Charts to Context: An Ecological View of Visualization Literacy_](https://osf.io/preprints/edarxiv/475zd_v1) - was accepted to the [ACM CHI 2026 Workshop on Data Literacy](https://data-literacy-workshop.github.io/CHI26/) in Barcelona, Spain 🇪🇸. [See our project page](/projects/eco-vis.html)"
-  members: [frida-mudsam, evan-peck]
-  projects: [eco-vis]
 
 - date: 2026-01-15
   text: "Evan Peck launches a new course at CU Boulder that translates the lab's expertise into a project-based educational experience for both undergrads and grad students - _Communicative Visualization: Designing Charts that Inform, Engage, and Persuade_. [Read the syllabus here](https://docs.google.com/document/d/11WNr94VFGrexVAG6Obek1OdKb5BKEju2kKCElBphfkk/edit?usp=sharing)"

@@ -15,6 +15,10 @@ news: []
 short_description: "How do context, culture, and lived experience shape the way people read charts? We apply an ecological framework to visualization literacy to move beyond individual decoding skills."
 ---
 
+![Photo of panel at CHI 2026 - the photo highlights Frida Mudsam holding a microphone to speak about her work](/images/projects/eco-vis/chi26-frida.jpg)
+
+
+
 Visualization interpretation and trust does not just depend on the chart itself, but layers of context surrounding it - from personal experience to rhetorical framing to social context. We translate [Bronfenbrenner's Ecological Systems Theory (EST)](https://www.simplypsychology.org/bronfenbrenner.html) to informaton visualization to create an organizing scaffold that both synthesizes prior visualization research and offers a systematic way to connect with adjacent disciplines, such as media studies and journalism.
 
 - **Core layer (Visual Encoding):** What patterns, trends, or relationships can be read and understood from the visual encodings?
@@ -25,5 +29,5 @@ Visualization interpretation and trust does not just depend on the chart itself,
 peated exposure, evolving conventions, or major events influence how this visualization
 is understood?
 
-
 ![A comparison of two ecological systems models. The "Original EST Model" on the left shows nested circles starting with the Individual (sex, age, health) at the center, moving outward through the Microlayer (family, peers), Mesolayer, Exolayer (mass media, industry), and Macrolayer (cultural attitudes). The "Applied EST Model" on the right maps these to data visualization: the center is "Visual Encoding" (marks, layout), followed by the Microlayer (personal experience), Exolayer (institutional contexts), and Macrolayer (cultural and linguistic norms). A "Chrono Layer" between them signifies the impact of time and historical events.](/images/projects/eco-vis/ecological-model-vis.png)
+
