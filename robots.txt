@@ -1,1 +1,1 @@
-Sitemap: https://infovisions.github.io/sitemap.xml
+Sitemap: /sitemap.xml
