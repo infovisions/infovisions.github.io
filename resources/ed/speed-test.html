@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapid user testing — speed and color</title>
+<style>
+  :root{
+    --ink:#16181a;
+    --paper:#f4f6f4;
+    --panel:#ffffff;
+    --rule:#d3d8d3;
+    --muted:#63696b;
+    --high:#1f6fb2;
+    --low:#c4611a;
+    --focus:#0b7a53;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,"Segoe UI",system-ui,sans-serif;
+    font-size:16px;line-height:1.5;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:32px 20px 80px}
+  h1{font-size:30px;line-height:1.15;letter-spacing:-.02em;margin:0 0 8px;font-weight:700;max-width:20ch}
+  h2{font-size:20px;letter-spacing:-.01em;margin:0 0 4px;font-weight:700}
+  h3{font-size:15px;margin:0 0 8px;font-weight:700}
+  p{margin:0 0 12px;max-width:68ch}
+  .lede{color:var(--muted);max-width:62ch;margin-bottom:28px}
+  section{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:20px;margin-bottom:16px}
+  .step{display:flex;gap:12px;align-items:baseline;margin-bottom:14px}
+  .step-n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted);font-size:13px;border:1px solid var(--rule);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;flex:none}
+  .hint{color:var(--muted);font-size:14px;max-width:62ch}
+  label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+  input[type=text],input[type=number],select{
+    font:inherit;color:var(--ink);background:#fff;
+    border:1px solid var(--rule);border-radius:3px;padding:7px 9px;width:100%;
+  }
+  input[type=number]{font-variant-numeric:tabular-nums;text-align:right}
+  input:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .fields{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:16px;margin-bottom:16px}
+  @media(max-width:680px){.fields{grid-template-columns:1fr}}
+  button{
+    font:inherit;font-weight:600;font-size:14px;
+    background:var(--ink);color:#fff;border:1px solid var(--ink);
+    border-radius:3px;padding:7px 13px;cursor:pointer;
+  }
+  button.ghost{background:#fff;color:var(--ink);border-color:var(--rule)}
+  button.ghost:hover{border-color:var(--ink)}
+  .buildlist{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 8px}
+  .chip{font-variant-numeric:tabular-nums;font-weight:700;border:1px solid var(--rule);border-radius:3px;padding:3px 9px;background:var(--paper)}
+  .waiting{border:1px dashed var(--rule);border-radius:3px;padding:14px;color:var(--muted);font-size:14px}
+  .tabs{display:flex;gap:6px;border-bottom:1px solid var(--rule);margin:6px 0 18px}
+  .tab{background:none;border:1px solid transparent;border-bottom:none;border-radius:3px 3px 0 0;color:var(--muted);padding:8px 14px;margin-bottom:-1px}
+  .tab[aria-selected=true]{background:#fff;border-color:var(--rule);color:var(--ink)}
+  .tab .count{font-variant-numeric:tabular-nums;font-weight:400;color:var(--muted)}
+  .trial{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;padding:10px 0;border-top:1px solid var(--rule)}
+  .trial:first-child{border-top:none}
+  .sign{width:88px;height:96px;border:3px solid var(--ink);border-radius:5px;background:#fff;display:grid;place-content:center;text-align:center;padding:6px 0}
+  .sign .cap{font-size:10px;font-weight:700;letter-spacing:.06em;line-height:1.1}
+  .sign .num{font-size:40px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1;margin-top:4px}
+  .guess-label{font-size:14px;color:var(--muted);margin-bottom:4px}
+  .guess-wrap{max-width:200px}
+  .order{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:6px}
+  .stats{display:flex;flex-wrap:wrap;gap:28px;margin:0 0 6px;padding:0;list-style:none}
+  .stats li{margin:0}
+  .stat-v{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1;display:block}
+  .stat-k{font-size:13px;color:var(--muted)}
+  .obs{border-left:3px solid var(--ink);padding:2px 0 2px 12px;margin:16px 0 0;font-size:15px;max-width:62ch}
+  figure{margin:22px 0 0}
+  figcaption{font-size:14px;color:var(--muted);margin-top:6px;max-width:62ch}
+  svg{width:100%;height:auto;display:block}
+  .chart-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:8px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .share{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .share input{font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
+  table{border-collapse:collapse;font-size:14px;margin-top:10px;width:100%;max-width:460px}
+  th,td{text-align:right;padding:4px 10px 4px 0;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums}
+  th:first-child,td:first-child{text-align:left}
+  details{margin-top:14px}
+  summary{cursor:pointer;font-size:14px;font-weight:600}
+  .empty{color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Rapid user testing: does your color say the right speed?</h1>
+<p class="lede">Your group gets its own set of eight speed limits, and each tester sees them in a different random order. Nobody can guess their way through by learning the answers.</p>
+
+<section aria-labelledby="setup-h">
+  <h2 id="setup-h">Set up your test</h2>
+  <p class="hint">Your class code and group name determine which speeds you test — the list below changes as you type. Settle on a name before you build your signs.</p>
+  <div class="fields">
+    <div>
+      <label for="classcode">Class code</label>
+      <input id="classcode" type="text" autocomplete="off" placeholder="from the slides">
+    </div>
+    <div>
+      <label for="group">Group name</label>
+      <input id="group" type="text" autocomplete="off" placeholder="e.g. Team Sunset">
+    </div>
+    <div>
+      <label for="mode">Speed set</label>
+      <select id="mode">
+        <option value="mixed">Drawn for your group</option>
+        <option value="custom">Set by hand</option>
+      </select>
+    </div>
+  </div>
+  <p class="hint" id="lock-note" hidden style="margin:-4px 0 16px">Your speeds are fixed while you have guesses recorded, so the signs you built stay valid. <button class="ghost" id="unlock" type="button" style="padding:3px 9px;font-size:13px;margin-left:4px">Clear results and change</button></p>
+  <div id="custom-wrap" hidden style="margin-bottom:16px">
+    <label for="speeds">Speeds to test</label>
+    <input id="speeds" type="text" inputmode="numeric" autocomplete="off">
+  </div>
+  <h3>Build a sign for each of these</h3>
+  <div class="buildlist" id="buildlist"></div>
+</section>
+
+<section aria-labelledby="run-h">
+  <h2 id="run-h">Run the test</h2>
+  <div class="step"><span class="step-n">1</span><span class="hint">Turn your screen away from the person you're testing — they should see your colored sign, never the number.</span></div>
+  <div class="step"><span class="step-n">2</span><span class="hint">Show the signs in the order below. Ask "what speed limit is this?" and type what they say.</span></div>
+  <div class="step"><span class="step-n">3</span><span class="hint">No hints, no corrections, no reactions between guesses, and don't tell them the answers when you're done — they may be testing for another group next.</span></div>
+
+  <div id="run-body"></div>
+</section>
+
+<section aria-labelledby="results-h">
+  <h2 id="results-h">Your results</h2>
+  <div id="results"><p class="empty">Charts appear as soon as you enter your first guess.</p></div>
+</section>
+
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- value sets ---------- */
+var SPINE = [17,34,56,73];                         // every group tests these
+var BANDS = [[20,30],[40,50],[60,70],[80,90]];     // one drawn value from each
+var MINGAP = 6;
+var NTESTER = 3;
+
+var C = {ink:"#16181a", rule:"#d3d8d3", muted:"#63696b", high:"#1f6fb2", low:"#c4611a", band:"#e8ebe8"};
+var FONT = '"Helvetica Neue",Helvetica,"Segoe UI",system-ui,sans-serif';
+
+var state = {
+  mode: "mixed",
+  classCode: "",
+  group: "",
+  speeds: [],
+  guesses: [[],[],[]],
+  active: 0
+};
+
+function hashStr(s){
+  var h = 2166136261;
+  for (var i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(a){
+  return function(){
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    var t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function candidates(band){
+  var out = [];
+  for (var v = band[0]+2; v <= band[1]-2; v++){
+    if (v % 5 === 0) continue;
+    var ok = SPINE.every(function(s){ return Math.abs(v - s) >= MINGAP; });
+    if (ok) out.push(v);
+  }
+  return out;
+}
+function drawSpeeds(){
+  var key = (state.classCode || "class") + "|" + (state.group || "group");
+  var rnd = mulberry32(hashStr(key));
+  var drawn = BANDS.map(function(b){
+    var c = candidates(b);
+    return c[Math.floor(rnd() * c.length)];
+  });
+  return SPINE.concat(drawn).sort(function(a,b){return a-b;});
+}
+function ready(){
+  if (state.mode === "mixed") return !!state.group.trim();
+  return state.speeds.length > 0;
+}
+function blankGuesses(){
+  for (var t=0;t<NTESTER;t++) state.guesses[t] = state.speeds.map(function(){ return null; });
+}
+function hasData(){
+  return state.guesses.some(function(row){
+    return row.some(function(v){ return v !== null && v !== undefined && !isNaN(v); });
+  });
+}
+
+function orderFor(tester){
+  var seed = hashStr(state.classCode + "::" + state.group + "::" + state.speeds.join(",") + "::" + tester);
+  var rnd = mulberry32(seed);
+  var idx = state.speeds.map(function(_,i){ return i; });
+  for (var i=idx.length-1;i>0;i--){
+    var j = Math.floor(rnd()*(i+1));
+    var t = idx[i]; idx[i] = idx[j]; idx[j] = t;
+  }
+  return idx;
+}
+
+/* ---------- url state ---------- */
+function writeHash(){
+  var parts = ["m=" + state.mode];
+  if (state.classCode) parts.push("c=" + encodeURIComponent(state.classCode));
+  if (state.group) parts.push("g=" + encodeURIComponent(state.group));
+  parts.push("v=" + state.speeds.join("."));
+  var t = [];
+  for (var k=0;k<NTESTER;k++){
+    t.push(state.speeds.map(function(_,i){
+      var v = state.guesses[k][i];
+      return (v === null || v === undefined || isNaN(v)) ? "-" : v;
+    }).join("."));
+  }
+  parts.push("t=" + t.join("_"));
+  history.replaceState(null, "", location.pathname + location.search + "#" + parts.join("&"));
+}
+function parseHash(h){
+  h = String(h||"").replace(/^#/,"");
+  if (!h) return null;
+  var out = {mode:"mixed", classCode:"", group:"", speeds:null, guesses:[[],[],[]]};
+  h.split("&").forEach(function(pair){
+    var i = pair.indexOf("=");
+    if (i < 0) return;
+    var k = pair.slice(0,i), v = pair.slice(i+1);
+    if (k === "m") out.mode = v;
+    if (k === "c") out.classCode = decodeURIComponent(v.replace(/\+/g," "));
+    if (k === "g") out.group = decodeURIComponent(v.replace(/\+/g," "));
+    if (k === "v") out.speeds = v.split(".").map(Number).filter(function(n){ return !isNaN(n); });
+    if (k === "t") v.split("_").forEach(function(row, ti){
+      if (ti >= NTESTER) return;
+      out.guesses[ti] = row.split(".").map(function(s){ return s === "-" ? null : Number(s); });
+    });
+  });
+  if (!out.speeds || !out.speeds.length) return null;
+  return out;
+}
+
+/* ---------- derived ---------- */
+function trials(){
+  var out = [];
+  for (var t=0;t<NTESTER;t++){
+    for (var i=0;i<state.speeds.length;i++){
+      var g = state.guesses[t][i];
+      if (g === null || g === undefined || isNaN(g)) continue;
+      out.push({speed: state.speeds[i], guess: g, err: g - state.speeds[i], tester: t});
+    }
+  }
+  return out;
+}
+function mean(a){ return a.reduce(function(s,v){ return s+v; },0) / a.length; }
+function meanErrBySpeed(tr){
+  return state.speeds.map(function(s){
+    var e = tr.filter(function(d){ return d.speed === s; }).map(function(d){ return d.err; });
+    return {speed:s, n:e.length, mean: e.length ? mean(e) : null};
+  });
+}
+function pearson(tr){
+  if (tr.length < 3) return 0;
+  var x = tr.map(function(d){return d.speed;}), y = tr.map(function(d){return d.guess;});
+  var mx = mean(x), my = mean(y), sxy=0, sxx=0, syy=0;
+  for (var i=0;i<x.length;i++){ sxy += (x[i]-mx)*(y[i]-my); sxx += (x[i]-mx)*(x[i]-mx); syy += (y[i]-my)*(y[i]-my); }
+  return (sxx && syy) ? sxy / Math.sqrt(sxx*syy) : 0;
+}
+
+/* ---------- svg helpers ---------- */
+var NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, text){
+  var n = document.createElementNS(NS, tag);
+  for (var k in attrs) if (attrs[k] !== null && attrs[k] !== undefined) n.setAttribute(k, attrs[k]);
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+function txt(x,y,s,o){
+  o = o || {};
+  return el("text", {x:x, y:y, "font-family":FONT, "font-size":o.size||12, "font-weight":o.weight||400,
+    fill:o.fill||C.muted, "text-anchor":o.anchor||"start", transform:o.transform||null,
+    "font-variant-numeric":"tabular-nums"}, s);
+}
+
+/* ---------- chart: error by speed ---------- */
+function errorChart(tr){
+  var P = {t:22, r:78, b:46, l:58}, IW = 480, IH = 260;
+  var w = IW + P.l + P.r, h = IH + P.t + P.b;
+  var mx = Math.max(20, Math.ceil(tr.reduce(function(m,d){ return Math.max(m, Math.abs(d.err)); },0)/10)*10);
+  var svg = el("svg", {viewBox:"0 0 "+w+" "+h, xmlns:NS, "aria-label":"Error by speed limit"});
+  var x = function(v){ return P.l + v/100*IW; };
+  var y = function(v){ return P.t + IH/2 - v/mx*(IH/2); };
+
+  svg.appendChild(el("rect",{x:P.l,y:P.t,width:IW,height:IH,fill:"#fff",stroke:C.rule}));
+  state.speeds.forEach(function(s){
+    svg.appendChild(el("line",{x1:x(s),y1:P.t,x2:x(s),y2:P.t+IH,stroke:C.rule,"stroke-dasharray":"2 4"}));
+    svg.appendChild(txt(x(s), P.t+IH+18, s, {anchor:"middle"}));
+  });
+  [mx/2, mx].forEach(function(v){
+    [v,-v].forEach(function(vv){
+      svg.appendChild(el("line",{x1:P.l,y1:y(vv),x2:P.l+IW,y2:y(vv),stroke:C.rule,"stroke-dasharray":"2 4"}));
+      svg.appendChild(txt(P.l-8, y(vv)+4, (vv>0?"+":"")+vv, {anchor:"end"}));
+    });
+  });
+  svg.appendChild(el("line",{x1:P.l,y1:y(0),x2:P.l+IW,y2:y(0),stroke:C.ink,"stroke-width":1.25}));
+  svg.appendChild(txt(P.l-8, y(0)+4, "0", {anchor:"end", fill:C.ink}));
+
+  var means = meanErrBySpeed(tr).filter(function(d){ return d.mean !== null; });
+  if (means.length > 1){
+    svg.appendChild(el("polyline",{points:means.map(function(d){ return x(d.speed)+","+y(d.mean); }).join(" "),
+      fill:"none", stroke:C.ink, "stroke-width":1, "stroke-opacity":.45}));
+  }
+  tr.forEach(function(d){
+    var off = (d.tester - 1) * 5;
+    svg.appendChild(el("circle",{cx:x(d.speed)+off, cy:y(d.err), r:5,
+      fill: d.err >= 0 ? C.high : C.low, "fill-opacity":.72, stroke:"#fff", "stroke-width":1}));
+  });
+  means.forEach(function(d){
+    svg.appendChild(el("line",{x1:x(d.speed)-13, y1:y(d.mean), x2:x(d.speed)+13, y2:y(d.mean),
+      stroke:C.ink, "stroke-width":2.5}));
+  });
+
+  svg.appendChild(txt(P.l+IW+10, P.t+12, "guessed", {size:11, fill:C.high}));
+  svg.appendChild(txt(P.l+IW+10, P.t+25, "too fast", {size:11, fill:C.high}));
+  svg.appendChild(txt(P.l+IW+10, P.t+IH-16, "guessed", {size:11, fill:C.low}));
+  svg.appendChild(txt(P.l+IW+10, P.t+IH-3, "too slow", {size:11, fill:C.low}));
+  svg.appendChild(txt(P.l+IW/2, h-8, "Speed on the sign (mph)", {anchor:"middle", size:13, fill:C.ink}));
+  svg.appendChild(txt(0,0,"Guess − actual (mph)", {anchor:"middle", size:13, fill:C.ink,
+    transform:"translate(16,"+(P.t+IH/2)+") rotate(-90)"}));
+  return svg;
+}
+
+/* ---------- chart: guessed vs shown ---------- */
+function scatterChart(tr){
+  var P = {t:16, r:16, b:46, l:54}, S = 400;
+  var w = S + P.l + P.r, h = S + P.t + P.b;
+  var svg = el("svg", {viewBox:"0 0 "+w+" "+h, xmlns:NS, "aria-label":"Guessed speed versus shown speed"});
+  var x = function(v){ return P.l + v/100*S; };
+  var y = function(v){ return P.t + S - Math.max(0, Math.min(100, v))/100*S; };
+
+  svg.appendChild(el("rect",{x:P.l,y:P.t,width:S,height:S,fill:"#fff",stroke:C.rule}));
+  svg.appendChild(el("polygon",{
+    points:[[0,0],[0,10],[90,100],[100,100],[100,90],[10,0]].map(function(p){ return x(p[0])+","+y(p[1]); }).join(" "),
+    fill:C.band}));
+  [25,50,75].forEach(function(v){
+    svg.appendChild(el("line",{x1:x(v),y1:P.t,x2:x(v),y2:P.t+S,stroke:C.rule,"stroke-dasharray":"2 3"}));
+    svg.appendChild(el("line",{x1:P.l,y1:y(v),x2:P.l+S,y2:y(v),stroke:C.rule,"stroke-dasharray":"2 3"}));
+  });
+  svg.appendChild(el("line",{x1:x(0),y1:y(0),x2:x(100),y2:y(100),stroke:C.ink,"stroke-width":1.25,"stroke-dasharray":"5 4"}));
+  svg.appendChild(txt(x(100)-4, y(100)+16, "perfect guess", {anchor:"end"}));
+
+  tr.forEach(function(d){
+    var off = (d.tester - 1) * 3.2;
+    svg.appendChild(el("circle",{cx:x(d.speed)+off, cy:y(d.guess), r:5.5,
+      fill: d.err >= 0 ? C.high : C.low, "fill-opacity":.72, stroke:"#fff", "stroke-width":1}));
+  });
+  [0,25,50,75,100].forEach(function(v){
+    svg.appendChild(txt(x(v), P.t+S+18, v, {anchor:"middle"}));
+    svg.appendChild(txt(P.l-8, y(v)+4, v, {anchor:"end"}));
+  });
+  svg.appendChild(txt(P.l+S/2, h-8, "Speed on the sign (mph)", {anchor:"middle", size:13, fill:C.ink}));
+  svg.appendChild(txt(0,0,"What they guessed (mph)", {anchor:"middle", size:13, fill:C.ink,
+    transform:"translate(14,"+(P.t+S/2)+") rotate(-90)"}));
+  return svg;
+}
+
+/* ---------- png export ---------- */
+function downloadPNG(svg, title, sub, filename){
+  var clone = svg.cloneNode(true);
+  var vb = clone.getAttribute("viewBox").split(" ").map(Number);
+  var w = vb[2], h = vb[3], pad = 18, head = sub ? 52 : 34;
+  var out = el("svg",{viewBox:"0 0 "+(w+pad*2)+" "+(h+head+pad), xmlns:NS, width:(w+pad*2)*2, height:(h+head+pad)*2});
+  out.appendChild(el("rect",{x:0,y:0,width:w+pad*2,height:h+head+pad,fill:"#ffffff"}));
+  out.appendChild(txt(pad, pad+13, title, {size:15, weight:700, fill:C.ink}));
+  if (sub) out.appendChild(txt(pad, pad+32, sub, {size:12, fill:C.muted}));
+  var g = el("g",{transform:"translate("+pad+","+head+")"});
+  while (clone.firstChild) g.appendChild(clone.firstChild);
+  out.appendChild(g);
+
+  var xml = new XMLSerializer().serializeToString(out);
+  var url = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(xml)));
+  var img = new Image();
+  img.onload = function(){
+    var cv = document.createElement("canvas");
+    cv.width = (w+pad*2)*2; cv.height = (h+head+pad)*2;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = "#fff"; ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.drawImage(img,0,0,cv.width,cv.height);
+    var a = document.createElement("a");
+    a.download = filename; a.href = cv.toDataURL("image/png"); a.click();
+  };
+  img.src = url;
+}
+
+/* ---------- setup rendering ---------- */
+var $ = function(id){ return document.getElementById(id); };
+
+function renderBuildList(){
+  var box = $("buildlist");
+  box.innerHTML = "";
+  if (!ready()){
+    box.innerHTML = '<span class="waiting">Enter your group name above to get your speeds.</span>';
+    return;
+  }
+  state.speeds.forEach(function(s){
+    var d = document.createElement("span");
+    d.className = "chip";
+    d.textContent = s + " mph";
+    box.appendChild(d);
+  });
+}
+
+/* ---------- entry rendering ---------- */
+function renderRun(){
+  var body = $("run-body");
+  body.innerHTML = "";
+  if (!ready()){
+    body.innerHTML = '<p class="waiting">Your signs appear once you have entered a group name.</p>';
+    return;
+  }
+  var tabs = document.createElement("div");
+  tabs.className = "tabs"; tabs.setAttribute("role","tablist");
+  for (var t=0;t<NTESTER;t++){
+    (function(t){
+      var done = state.guesses[t].filter(function(v){ return v !== null && v !== undefined && !isNaN(v); }).length;
+      var b = document.createElement("button");
+      b.className = "tab"; b.type = "button"; b.setAttribute("role","tab");
+      b.setAttribute("aria-selected", state.active === t ? "true" : "false");
+      b.innerHTML = "Tester " + (t+1) + ' <span class="count">' + done + "/" + state.speeds.length + "</span>";
+      b.onclick = function(){ state.active = t; renderRun(); };
+      tabs.appendChild(b);
+    })(t);
+  }
+  body.appendChild(tabs);
+
+  var panel = document.createElement("div");
+  var note = document.createElement("p");
+  note.className = "order";
+  note.textContent = "Show these signs in this order — it is different for each tester.";
+  panel.appendChild(note);
+
+  var ti = state.active;
+  orderFor(ti).forEach(function(si, pos){
+    var row = document.createElement("div");
+    row.className = "trial";
+
+    var sign = document.createElement("div");
+    sign.className = "sign";
+    sign.innerHTML = '<div class="cap">SPEED<br>LIMIT</div><div class="num">' + state.speeds[si] + "</div>";
+
+    var right = document.createElement("div");
+    var lab = document.createElement("label");
+    lab.className = "guess-label";
+    lab.setAttribute("for", "g-"+ti+"-"+si);
+    lab.textContent = "Sign " + (pos+1) + " of " + state.speeds.length + " — their guess";
+    var wrap = document.createElement("div");
+    wrap.className = "guess-wrap";
+    var inp = document.createElement("input");
+    inp.type = "number"; inp.min = "0"; inp.max = "200"; inp.step = "1";
+    inp.id = "g-"+ti+"-"+si;
+    inp.placeholder = "mph";
+    var cur = state.guesses[ti][si];
+    inp.value = (cur === null || cur === undefined || isNaN(cur)) ? "" : cur;
+    inp.oninput = function(){
+      state.guesses[ti][si] = inp.value === "" ? null : Number(inp.value);
+      writeHash();
+      var tab = tabs.children[ti];
+      var done = state.guesses[ti].filter(function(v){ return v !== null && v !== undefined && !isNaN(v); }).length;
+      tab.innerHTML = "Tester " + (ti+1) + ' <span class="count">' + done + "/" + state.speeds.length + "</span>";
+      tab.onclick = function(){ state.active = ti; renderRun(); };
+      renderLock();
+      renderResults();
+    };
+    inp.onkeydown = function(e){
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      var all = Array.prototype.slice.call(panel.querySelectorAll("input"));
+      var i = all.indexOf(inp);
+      if (i > -1 && i < all.length-1) all[i+1].focus();
+      else if (state.active < NTESTER-1){ state.active++; renderRun(); $("run-body").querySelector(".trial input").focus(); }
+      else $("results").scrollIntoView({behavior:"smooth", block:"start"});
+    };
+    wrap.appendChild(inp);
+    right.appendChild(lab); right.appendChild(wrap);
+    row.appendChild(sign); row.appendChild(right);
+    panel.appendChild(row);
+  });
+  body.appendChild(panel);
+}
+
+/* ---------- results rendering ---------- */
+function observations(tr){
+  var out = [];
+  var r = pearson(tr);
+  var per = meanErrBySpeed(tr).filter(function(d){ return d.mean !== null; });
+  if (tr.length >= 6 && r < -0.3){
+    out.push("Guesses run opposite to your mapping — testers are reading your scale backwards. Which end of your ramp says “fast”?");
+  }
+  var worst = per.slice().sort(function(a,b){ return Math.abs(b.mean) - Math.abs(a.mean); })[0];
+  if (worst && Math.abs(worst.mean) >= 12){
+    out.push("Your biggest miss is at " + worst.speed + " mph: guesses came in " + Math.round(Math.abs(worst.mean)) +
+      " mph too " + (worst.mean > 0 ? "high" : "low") + " on average.");
+  }
+  if (out.length < 2 && per.length >= 4){
+    var flat = null;
+    for (var i=0;i<per.length-1;i++){
+      var gap = (per[i+1].speed + per[i+1].mean) - (per[i].speed + per[i].mean);
+      if (gap <= 3) flat = [per[i].speed, per[i+1].speed];
+    }
+    if (flat) out.push("Testers gave " + flat[0] + " and " + flat[1] + " mph about the same answer — those two colors are doing the same job.");
+    else if (Math.max.apply(null, per.map(function(d){ return Math.abs(d.mean); })) < 10){
+      out.push("No speed is badly off on its own — testers are reading the whole range about right.");
+    }
+  }
+  return out.slice(0,2);
+}
+
+function figure(svg, title, caption, pngTitle, pngSub, filename, legend){
+  var fig = document.createElement("figure");
+  var head = document.createElement("div");
+  head.className = "chart-head";
+  var h = document.createElement("h3"); h.textContent = title; h.style.margin = "0";
+  var b = document.createElement("button");
+  b.className = "ghost"; b.type = "button"; b.textContent = "Download image";
+  b.onclick = function(){ downloadPNG(svg, pngTitle, pngSub, filename); };
+  head.appendChild(h); head.appendChild(b);
+  fig.appendChild(head);
+  fig.appendChild(svg);
+  if (legend){
+    var lg = document.createElement("div");
+    lg.className = "legend";
+    lg.innerHTML = '<span><i class="dot" style="background:' + C.high + '"></i>guessed faster than the sign</span>' +
+                   '<span><i class="dot" style="background:' + C.low + '"></i>guessed slower than the sign</span>';
+    fig.appendChild(lg);
+  }
+  var cap = document.createElement("figcaption");
+  cap.textContent = caption;
+  fig.appendChild(cap);
+  return fig;
+}
+
+function renderResults(){
+  var box = $("results");
+  var tr = trials();
+  box.innerHTML = "";
+  if (!tr.length){
+    box.innerHTML = '<p class="empty">Charts appear as soon as you enter your first guess.</p>';
+    return;
+  }
+  var abs = tr.map(function(d){ return Math.abs(d.err); });
+  var within = tr.filter(function(d){ return Math.abs(d.err) <= 10; }).length;
+
+  var ul = document.createElement("ul");
+  ul.className = "stats";
+  [[Math.round(mean(abs)) + " mph", "typical miss"],
+   [Math.round(within/tr.length*100) + "%", "within 10 mph"],
+   [tr.length + "/" + (state.speeds.length*NTESTER), "guesses recorded"]].forEach(function(s){
+    var li = document.createElement("li");
+    li.innerHTML = '<span class="stat-v">' + s[0] + '</span><span class="stat-k">' + s[1] + "</span>";
+    ul.appendChild(li);
+  });
+  box.appendChild(ul);
+  observations(tr).forEach(function(o){
+    var p = document.createElement("p"); p.className = "obs"; p.textContent = o; box.appendChild(p);
+  });
+
+  var gname = state.group || "Unnamed group";
+  var sub = gname + (state.classCode ? " · " + state.classCode : "") + " — " + tr.length + " guesses from " + NTESTER + " testers";
+  box.appendChild(figure(errorChart(tr),
+    "Where your mapping misses",
+    "Each dot is one guess; the thick tick is the average for that speed. Dots above the line mean drivers would go faster than you intended.",
+    gname + " — error by speed limit", sub, "error-by-speed.png", true));
+  box.appendChild(figure(scatterChart(tr),
+    "How close were they overall",
+    "Points on the dashed line are exact. A cloud running the other way means your colors are being read in reverse.",
+    gname + " — guessed vs. shown speed", sub, "guessed-vs-shown.png", true));
+
+  var share = document.createElement("div");
+  share.innerHTML = '<h3 style="margin-top:26px">Share your results</h3>' +
+    '<p class="hint">This link carries your data — send it to your instructor or open it on another machine to pick up where you left off.</p>';
+  var row = document.createElement("div");
+  row.className = "share";
+  var inp = document.createElement("input");
+  inp.type = "text"; inp.readOnly = true; inp.value = location.href;
+  inp.onclick = function(){ inp.select(); };
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.textContent = "Copy link";
+  btn.onclick = function(){
+    inp.select();
+    try { document.execCommand("copy"); } catch(e){}
+    if (navigator.clipboard) navigator.clipboard.writeText(location.href);
+    btn.textContent = "Copied";
+    setTimeout(function(){ btn.textContent = "Copy link"; }, 1600);
+  };
+  row.appendChild(inp); row.appendChild(btn);
+  share.appendChild(row);
+  box.appendChild(share);
+
+  var det = document.createElement("details");
+  det.innerHTML = "<summary>Show the numbers</summary>";
+  var tbl = document.createElement("table");
+  var head = "<tr><th>Speed shown</th><th>T1</th><th>T2</th><th>T3</th><th>Avg error</th></tr>";
+  var rows = state.speeds.map(function(s,i){
+    var cells = [0,1,2].map(function(t){
+      var v = state.guesses[t][i];
+      return "<td>" + ((v===null||v===undefined||isNaN(v)) ? "—" : v) + "</td>";
+    }).join("");
+    var e = tr.filter(function(d){ return d.speed === s; }).map(function(d){ return d.err; });
+    var m = e.length ? Math.round(mean(e)) : null;
+    return "<tr><td>" + s + "</td>" + cells + "<td>" + (m===null ? "—" : (m>0?"+":"")+m) + "</td></tr>";
+  }).join("");
+  tbl.innerHTML = head + rows;
+  det.appendChild(tbl);
+  box.appendChild(det);
+}
+
+/* ---------- speed set + lock ---------- */
+function applyDraw(){
+  state.speeds = ready() ? drawSpeeds() : [];
+  blankGuesses();
+  state.active = 0;
+  writeHash();
+  renderAll();
+}
+function renderLock(){
+  var locked = hasData();
+  $("classcode").readOnly = locked;
+  $("group").readOnly = locked;
+  $("mode").disabled = locked;
+  $("speeds").readOnly = locked;
+  $("lock-note").hidden = !locked;
+}
+function renderAll(){
+  renderLock();
+  renderBuildList();
+  renderRun();
+  renderResults();
+}
+
+/* ---------- boot ---------- */
+function boot(){
+  var fromUrl = parseHash(location.hash);
+  if (fromUrl){
+    state.mode = fromUrl.mode === "custom" ? "custom" : "mixed";
+    state.classCode = fromUrl.classCode;
+    state.group = fromUrl.group;
+    state.speeds = fromUrl.speeds;
+    for (var t=0;t<NTESTER;t++){
+      state.guesses[t] = state.speeds.map(function(_,i){
+        var v = fromUrl.guesses[t] ? fromUrl.guesses[t][i] : null;
+        return (v === null || v === undefined || isNaN(v)) ? null : v;
+      });
+    }
+  }
+  $("classcode").value = state.classCode;
+  $("group").value = state.group;
+  $("mode").value = state.mode;
+  $("custom-wrap").hidden = state.mode !== "custom";
+  $("speeds").value = state.speeds.join(", ");
+
+  function seedChanged(field){
+    return function(){
+      state[field] = this.value.trim();
+      if (state.mode === "mixed") applyDraw();
+      else { writeHash(); }
+    };
+  }
+  $("classcode").oninput = seedChanged("classCode");
+  $("group").oninput = seedChanged("group");
+
+  $("mode").onchange = function(){
+    state.mode = this.value;
+    $("custom-wrap").hidden = state.mode !== "custom";
+    if (state.mode === "mixed"){ applyDraw(); }
+    else {
+      $("speeds").value = state.speeds.join(", ");
+      writeHash();
+      renderAll();
+    }
+  };
+  $("speeds").onchange = function(){
+    var v = this.value.split(/[,\s]+/).map(Number).filter(function(n){ return !isNaN(n) && n >= 0 && n <= 100; });
+    if (!v.length){ this.value = state.speeds.join(", "); return; }
+    state.speeds = v;
+    this.value = v.join(", ");
+    blankGuesses();
+    state.active = 0;
+    writeHash();
+    renderAll();
+  };
+  $("unlock").onclick = function(){
+    if (!confirm("This clears the guesses you have recorded so far. Continue?")) return;
+    blankGuesses();
+    state.active = 0;
+    writeHash();
+    renderAll();
+    $("group").focus();
+  };
+
+  if (!state.speeds.length && state.mode === "mixed"){
+    state.speeds = ready() ? drawSpeeds() : [];
+    blankGuesses();
+  }
+  writeHash();
+  renderAll();
+}
+boot();
+})();
+</script>
+</body>
+</html>
