@@ -3,7 +3,7 @@ title: "Experiential Data through Ceramics"
 subtitle: "Multi-Sensory Data"
 status: active
 published: true
-image: images/projects/ceramics/ceramic-prototype.png
+image: images/projects/ceramics/CeramicsHeroImage.jpeg
 date_start: 2026
 lead:
   - katherine-davis
